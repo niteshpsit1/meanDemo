@@ -2,6 +2,8 @@ var app = angular.module('myApp',[]);
 
 app.controller('myController',function($scope, 	$http){
 	
+	$scope.userLogin = false;
+
 	$http.get('/users').then(function(response){
 		$scope.users = response.data;
 	});

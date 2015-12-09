@@ -10,13 +10,31 @@
 </head>
 <body>
  <div ng-controller='myController' class="container">
- 	<h1>Mean Demo</h1>
-	  <p class="text-primary">Its a simple Mean Demo</p>
-	  <blockquote class="blockquote-reverse text-success">
-	    <p>It is useful for beginner who are new for mean . I have use everything that should be required in mean like mongodb as a database, angularjs frontend framwork, node js server side platform build in javascript and express framwork.</p>
-	    <footer class="bg-info">----   Nitesh: niteshpsit@gmail.com</footer>
-	  </blockquote>
- 	<div>
+ 	<div class="bg-warning">
+	 	<div class="row">
+	 		<div class="col-sm-6">
+		 		<h1>Mean Demo</h1>
+		 		<p class="text-primary">Its a simple Mean Demo</p>
+		 	</div>
+		 	<div class="col-sm-2"></div>
+		 	<div class="col-sm-4">
+		 		<img src="image/meanDemo1.jpg" class="img-circle" style="width:150px;height:150px">
+		 	</div>
+		</div>	
+		  <blockquote class="blockquote-reverse text-success">
+		    <p>It is useful for beginner who are new for mean . I have use everything that should be required in mean like mongodb as a database, angularjs frontend framwork, node js server side platform build in javascript and express framwork.</p>
+		    <footer class="bg-info">----   Nitesh: niteshpsit@gmail.com</footer>
+		  </blockquote>
+	 	<div class="row">
+		  <div class="col-sm-2 text-primary well well-sm">Home</div>
+		  <div class="col-sm-2 text-primary well well-sm" ng-hide="userLogin">Login</div>
+		  <div class="col-sm-2 text-primary well well-sm" ng-hide="userLogin">Register</div>
+		  <div class="col-sm-2 text-primary well well-sm" ng-show="userLogin">Logout</div>
+		  <div class="col-sm-2 text-primary well well-sm" ng-show="userLogin">Profile</div>
+		  <div class="col-sm-2 text-primary well well-sm">Contact</div>
+		  <div class="col-sm-4"></div>
+		</div>
+	</div>
  		<form action="#" ng-submit="register()" name="myForm" novalidate>
 	 		<div>
 	 			<span>Name:<input type="text" name="name" ng-model="name" placeholder="name" required/></span>
