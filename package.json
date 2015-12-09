@@ -1,0 +1,27 @@
+{
+  "name": "meanDemo",
+  "version": "0.0.0",
+  "description": "Mean example",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/niteshpsit1/meanDemo.git"
+  },
+  "author": "Nitesh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/niteshpsit1/meanDemo/issues"
+  },
+  "homepage": "https://github.com/niteshpsit1/meanDemo",
+  "dependencies": {
+    "bcryptjs": "^2.3.0",
+    "body-parser": "^1.14.1",
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "mongoose": "^4.2.10",
+    "q": "^1.4.1"
+  }
+}
