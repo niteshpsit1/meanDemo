@@ -1,4 +1,27 @@
-var app = angular.module('myApp',[]);
+var app = angular.module('myApp',['ngRoute']);
+
+app.config(function($routeProvider){
+	$routeProvider
+	.when('/',{
+		templateUrl: 'pages/home.html',
+		//controller: 'mainController'
+	})
+	.when('/login',{
+		templateUrl: 'pages/login.html',
+		//controller: 'mainController'
+	})
+	.when('/contact',{
+		templateUrl: 'pages/contact.html',
+		//controller: 'mainController'
+	})
+	.when('/register',{
+		templateUrl: 'pages/register.html',
+		//controller: 'mainController'
+	})
+	.otherwise({
+        redirectTo: '/'
+    });
+});
 
 app.controller('myController',function($scope, 	$http){
 	

@@ -5,8 +5,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Mean Demo</title>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/loginCss.css">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+ 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+ 	<script src="app.js"></script>
 </head>
 <body>
  <div ng-controller='myController' class="container">
@@ -18,7 +22,7 @@
 		 	</div>
 		 	<div class="col-sm-2"></div>
 		 	<div class="col-sm-4">
-		 		<img src="image/meanDemo1.jpg" class="img-circle" style="width:150px;height:150px">
+		 		
 		 	</div>
 		</div>	
 		  <blockquote class="blockquote-reverse text-success">
@@ -26,64 +30,16 @@
 		    <footer class="bg-info">----   Nitesh: niteshpsit@gmail.com</footer>
 		  </blockquote>
 	 	<div class="row">
-		  <div class="col-sm-2 text-primary well well-sm">Home</div>
-		  <div class="col-sm-2 text-primary well well-sm" ng-hide="userLogin">Login</div>
-		  <div class="col-sm-2 text-primary well well-sm" ng-hide="userLogin">Register</div>
-		  <div class="col-sm-2 text-primary well well-sm" ng-show="userLogin">Logout</div>
-		  <div class="col-sm-2 text-primary well well-sm" ng-show="userLogin">Profile</div>
-		  <div class="col-sm-2 text-primary well well-sm">Contact</div>
+		  <a href="#home"><div class="col-sm-2 text-primary well well-sm">Home</div></a>
+		  <a href="#login"><div class="col-sm-2 text-primary well well-sm" ng-hide="userLogin">Login</div></a>
+		  <a href="#register"><div class="col-sm-2 text-primary well well-sm" ng-hide="userLogin">Register</div></a>
+		  <a href="#logut"><div class="col-sm-2 text-primary well well-sm" ng-show="userLogin">Logout</div></a>
+		  <a href="#profile"><div class="col-sm-2 text-primary well well-sm" ng-show="userLogin">Profile</div></a>
+		  <a href="#contact"><div class="col-sm-2 text-primary well well-sm">Contact</div></a>
 		  <div class="col-sm-4"></div>
 		</div>
 	</div>
- 		<form action="#" ng-submit="register()" name="myForm" novalidate>
-	 		<div>
-	 			<span>Name:<input type="text" name="name" ng-model="name" placeholder="name" required/></span>
-	 			<span style="color:red" ng-show="myForm.name.$dirty && myForm.name.$invalid">
-	 				<span ng-show="myForm.name.$error.required">Username is required</span>
-	 			</span>
-	 		</div>
-	 		<div>
-	 			<span>Email:<input type="email" name="email" ng-model="email" placeholder="email" required/></span>
-	 			<span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
-				<span ng-show="myForm.email.$error.required">Email is required.</span>
-				<span ng-show="myForm.email.$error.email">Invalid email address.</span>
-				</span>
-	 		</div>
-	 		<div>
-	 			<span>password:<input type="password" name="password" ng-model="password" placeholder="******" required/></span>
-	 			<span style="color:red" ng-show="myForm.password.$dirty && myForm.password.$invalid">
-	 				<span ng-show="myForm.password.$error.required">Password required</span>
-	 			</span>
-	 		</div>
-	 		<div>
-	 			<span>confirm password:<input type="password" name="con_password" ng-model="con_password" placeholder="******" required/></span>
-	 			<span style="color:red" ng-show="myForm.con_password.$dirty && myForm.con_password.$invalid">
-	 				<span ng-show="myForm.con_password.$error.required">Re-Enter password</span>
-	 			</span>
-	 		</div>
-	 		<div>
-	 			<span>Contact:<input type="number" name="contact" ng-model="contact" placeholder="123456789" required/></span>
-	 			<span style="color:red" ng-show="myForm.con_password.$dirty && myForm.con_password.$invalid">
-	 				<span ng-show="myForm.con_password.$error.required">Number Required</span>
-	 			</span>
-	 		</div>
-	 		<div>
-	 			<span>Gender:<input type="text" name="gender" ng-model="gender" placeholder="male or female" required/></span>
-	 			<span style="color:red" ng-show="myForm.gender.$dirty && myForm.con_password.$invalid">
-	 				<span ng-show="myForm.gender.$error.required">Gender Required</span>
-	 			</span>
-	 		</div>
-	 		<div>
-	 			<input type="submit" value="Register" ng-disabled="myForm.$invalid"/></span>
-	 		</div>
-	 	</form>
- 	</div>
- 	<div ng-repeat="user in users">
- 		<span>{{user.name}}</span>
- 		<span>{{user.contact}}</span>
- 	</div>
+ 	<div ng-view></div>
  </div>
- <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
- <script src="app.js"></script>
  </body>
 </html>
