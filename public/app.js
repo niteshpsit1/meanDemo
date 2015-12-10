@@ -2,48 +2,34 @@ var app = angular.module('myApp',['ngRoute']);
 
 app.config(function($routeProvider){
 	$routeProvider
-	.when('/',{
+	.when('/home',{
 		templateUrl: 'pages/home.html',
-		//controller: 'mainController'
+		controller: 'authenticationController'
 	})
 	.when('/login',{
 		templateUrl: 'pages/login.html',
-		//controller: 'mainController'
+		controller: 'authenticationController'
 	})
 	.when('/contact',{
-		templateUrl: 'pages/contact.html',
+		templateUrl: 'pages/home.html',
 		//controller: 'mainController'
 	})
-	.when('/register',{
-		templateUrl: 'pages/register.html',
-		//controller: 'mainController'
+	.when('/registration',{
+		templateUrl: 'pages/registration.html',
+		controller: 'authenticationController'
 	})
 	.otherwise({
         redirectTo: '/'
     });
 });
 
-app.controller('myController',function($scope, 	$http){
+app.controller('myController',function($scope, 	$http , $rootScope, $location){
 	
-	$scope.userLogin = false;
-
-	$http.get('/users').then(function(response){
-		$scope.users = response.data;
-	});
-
-	$scope.register = function(){
-		alert('ok');
-		var	data = { 
-			name: $scope.name,
-			email: $scope.email,
-			password: $scope.password,
-			con_password: $scope.con_password,
-			contact: $scope.contact,
-			gender: $scope.gender
-		}
-		$http.post('users/register',data).then(function(response){
-			console.log('posted');
-			console.log(response);
-		});
+	$rootScope.isUserLogin = localStorage.getItem('isMeanDemoUserLogin') ? true :false;
+	$scope.logout = function(){
+		localStorage.removeItem("isMeanDemoUserLogin");
+		localStorage.removeItem("userDetails");
+		$rootScope.isUserLogin = false;
+		$location.url('/home');
 	}
 });

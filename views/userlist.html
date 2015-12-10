@@ -11,6 +11,7 @@
   	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
  	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
  	<script src="app.js"></script>
+ 	<script src="js/controller/authenticationController.js"></script>
 </head>
 <body>
  <div ng-controller='myController' class="container">
@@ -31,14 +32,15 @@
 		  </blockquote>
 	 	<div class="row">
 		  <a href="#home"><div class="col-sm-2 text-primary well well-sm">Home</div></a>
-		  <a href="#login"><div class="col-sm-2 text-primary well well-sm" ng-hide="userLogin">Login</div></a>
-		  <a href="#register"><div class="col-sm-2 text-primary well well-sm" ng-hide="userLogin">Register</div></a>
-		  <a href="#logut"><div class="col-sm-2 text-primary well well-sm" ng-show="userLogin">Logout</div></a>
-		  <a href="#profile"><div class="col-sm-2 text-primary well well-sm" ng-show="userLogin">Profile</div></a>
+		  <a href="#login"><div class="col-sm-2 text-primary well well-sm" ng-hide="isUserLogin">Login</div></a>
+		  <a href="#registration"><div class="col-sm-2 text-primary well well-sm" ng-hide="isUserLogin">Register</div></a>
+		  <a ng-click="logout()" href="#"><div class="col-sm-2 text-primary well well-sm" ng-show="isUserLogin">Logout</div></a>
+		  <a href="#profile"><div class="col-sm-2 text-primary well well-sm" ng-show="isUserLogin">Profile</div></a>
 		  <a href="#contact"><div class="col-sm-2 text-primary well well-sm">Contact</div></a>
 		  <div class="col-sm-4"></div>
 		</div>
 	</div>
+
  	<div ng-view></div>
  </div>
  </body>

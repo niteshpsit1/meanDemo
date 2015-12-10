@@ -4,29 +4,56 @@ var express = require('express'),
     bcrypt = require('bcryptjs'),
     Promise	= require('q');
 
-router.get('/', function(req, res){
-	res.send([
-		{ name:'Nitesh', contact:'142234'},
-		{ name:'Brijesh', contact:'242234'},
-		{ name:'Ritesh', contact:'342234'}
-	]);
+router.post('/login',function(req, res){
+	
+	Users.findOne({email: req.body.email})
+	.then(function(data, error){
+		if(error){
+			console.log(error);
+			res.send({message:"someThing went Wrong sorry"});
+		}
+		else if(data){
+			
+			comparePasswordToHash(req.body.password, data.password)
+			.then(function(matchValue){
+				if(matchValue == 'matched')
+					res.send({data:data, message:'ok'});
+				else if(matchValue == 'unmatched')
+					res.send({message:"password not match please enter correct password"});
+				else 
+					res.send({message:"someThing went Wrong sorry"});
+			})
+			.catch(function(error){
+				console.log(error);
+				res.send({message:"someThing went Wrong sorry"});
+			});
+		}
+		else{
+			res.send({message:"user not found please enter valid eamil"});
+		}
+	});
+
 });
 
 router.post('/register',function(req, res){
-	console.log('posted');
+	
 	convertPasswordToHash(req.body.password)
 	.then(function(data){
-		console.log(req.body);
 		req.body.password = data;
-		console.log(req.body);
-		(new	Users(req.body)).save()
+		(new Users(req.body)).save()
 		.then(function(data){
-			console.log(data);
-			res.send('ok');
+			if (data) {
+				res.send({message:'ok'});
+			}
+			else {
+				res.send({message:'error'});
+			}
+		},function(error){
+			res.send({message:'user alredy exist or invalid email'});
 		});	
 	})
 	.catch(function(err){
-		res.send('someThing went Wrong oooopps');
+		res.send({message:'someThing went Wrong oooopps'});
 	})
 	
 });
@@ -41,6 +68,22 @@ function convertPasswordToHash(password){
 	        	deferred.reject('not convert');
 	        }
 	    });
+	});
+	return deferred.promise;
+}
+
+function comparePasswordToHash(password, hash){
+	var deferred  =	Promise.defer();
+	bcrypt.compare(password, hash, function(error, res) {
+    	if(res){
+    		return deferred.resolve('matched');
+    	}
+    	else if(error){
+    		return deferred.reject(error)
+    	}
+    	else{
+    		return deferred.resolve('unmatched');
+    	}
 	});
 	return deferred.promise;
 }
