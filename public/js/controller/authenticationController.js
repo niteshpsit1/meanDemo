@@ -34,7 +34,7 @@ app.controller('authenticationController',function($scope, $http, $location, $ro
 			contact: $scope.user.contact,
 			gender: $scope.user.gender
 		}
-		console.log('okkkkk');
+
 		$http.post('register',data).then(function(response){
 			console.log(response);
 			if(response.data.message == 'ok')
